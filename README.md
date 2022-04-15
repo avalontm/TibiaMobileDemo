@@ -6,6 +6,11 @@ Este es una demostracion de un juego RPG (OFFLINE)
 # Únete a la discusión
 Unete a nuestro canal de [Discord](https://discord.gg/kZXactgWdw), para mas informacion del proyecto.
 
+# Framwework
+[MonoGame](https://www.monogame.net) 
+
+[EmptyKeys](https://www.emptykeys.com) [UI]
+
 # Proyectos
 
 # ONLINE

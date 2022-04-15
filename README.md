@@ -6,6 +6,10 @@ Este es una demostracion de un juego RPG (OFFLINE)
 # Únete a la discusión
 Unete a nuestro canal de [Discord](https://discord.gg/kZXactgWdw), para mas informacion del proyecto.
 
+# IDE
+
+[VisualStudio](https://visualstudio.microsoft.com/es/downloads) [2019+]
+
 # Framwework
 [MonoGame](https://www.monogame.net) 
 

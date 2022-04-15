@@ -1,4 +1,3 @@
-# TibiaMobileDemo
-Tibia Mobile - Desktop Demo 
+# TibiaMobile - Desktop Demo
 
 ![Main](images/screen1.png)

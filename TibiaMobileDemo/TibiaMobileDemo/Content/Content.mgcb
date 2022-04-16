@@ -14,16 +14,6 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin creatures/chr_11.tmc
-/importer:ContentImporter1
-/processor:ContentProcessor1
-/build:creatures/chr_11.tmc
-
-#begin creatures/chr_128.tmc
-/importer:ContentImporter1
-/processor:ContentProcessor1
-/build:creatures/chr_128.tmc
-
 #begin defaultFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor

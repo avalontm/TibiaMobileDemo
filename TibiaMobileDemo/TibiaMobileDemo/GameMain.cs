@@ -92,7 +92,7 @@ namespace TibiaMobileDemo
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            bool loaded = TMInstance.InitGame(GraphicsDevice, Content, "");
+            bool loaded = TMInstance.InitGame(GraphicsDevice, Content, true);
             Debug.WriteLine($"[GAME] {loaded}");
 
             bool maploaded = TMInstance.InitWorld();

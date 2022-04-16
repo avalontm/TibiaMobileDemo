@@ -28,6 +28,9 @@
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GameLibrary\GameLibrary.csproj" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="TMFormat">
       <HintPath>..\..\..\TMFormat\TMFormat\bin\Debug\netstandard2.0\TMFormat.dll</HintPath>
     </Reference>

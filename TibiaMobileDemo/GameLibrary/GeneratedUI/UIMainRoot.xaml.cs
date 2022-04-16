@@ -48,6 +48,11 @@ namespace EmptyKeys.UserInterface.Generated {
             this.Background = new SolidColorBrush(new ColorW(255, 255, 255, 0));
             Binding binding__OwnedWindowsContent = new Binding("Windows");
             this.SetBinding(UIRoot.OwnedWindowsContentProperty, binding__OwnedWindowsContent);
+            InitializeElementResources(this);
+        }
+        
+        private static void InitializeElementResources(UIElement elem) {
+            elem.Resources.MergedDictionaries.Add(Dictionary.Instance);
         }
     }
 }

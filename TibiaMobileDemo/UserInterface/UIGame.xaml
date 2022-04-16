@@ -6,49 +6,96 @@
            xmlns:ek="clr-namespace:EmptyKeys.UserInterface.Designer;assembly=EmptyKeys.UserInterface.Designer"
            xmlns:ef="clr-namespace:EmptyKeys.UserInterface.Designer.Effects;assembly=EmptyKeys.UserInterface.Designer"
            xmlns:c="clr-namespace:EmptyKeys.UserInterface.Designer.Charts;assembly=EmptyKeys.UserInterface.Designer"
+
            xmlns:local="clr-namespace:UserInterface"
            mc:Ignorable="d" 
            d:DesignHeight="600" d:DesignWidth="800">
 
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Dictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Background="Gray">
+        <Grid Grid.Row="0" Background="{DynamicResource Background}">
 
         </Grid>
         
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="230"/>
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Column="0" Background="Gray">
+            <Grid Grid.Column="0" Background="{DynamicResource Background}">
 
             </Grid>
 
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="180"/>
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0">
 
                 </Grid>
 
-                <Grid Grid.Row="1" Background="Gray">
+                <Grid Grid.Row="1" Background="{DynamicResource Background}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
+                    <Grid Grid.Row="0">
+                        <TabControl Background="{DynamicResource Background}" HorizontalContentAlignment="Stretch">
+
+                            <TabItem Header="General" Background="{DynamicResource Background}">
+                                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
+                                    <ItemsControl ItemsSource="{Binding generalChannel}" >
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock Grid.Column="0" Text="{Binding date, StringFormat='{}{0:hh:mm:ss} '}" FontSize="12" FontWeight="Bold" Foreground="#e5e44b"/>
+                                                    <TextBlock Grid.Column="1" Text="{Binding name,StringFormat='{}{0}: '}" FontSize="12" FontWeight="Bold" Foreground="#e5e44b"/>
+                                                    <TextBlock Grid.Column="2" Text="{Binding message}" FontSize="12" FontWeight="Bold" Foreground="#e5e44b"/>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </ScrollViewer>
+                            </TabItem>
+
+                            <TabItem Header="Game Log" Background="{DynamicResource Background}">
+                            </TabItem>
+                        </TabControl>
+                    </Grid>
+                   
+                    <Grid Grid.Row="1">
+                        <TextBox Text="{Binding general}" FontSize="12" FontWeight="Bold"/>
+                    </Grid>
+                    
                 </Grid>
             </Grid>
 
-            <Grid Grid.Column="2" Background="Gray">
+            <Grid Grid.Column="2" Background="{DynamicResource Background}">
 
             </Grid>
         </Grid>
     </Grid>
 </UserControl>
+

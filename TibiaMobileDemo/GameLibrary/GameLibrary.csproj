@@ -14,4 +14,8 @@
     <PackageReference Include="EmptyKeysUI_MonoGame" Version="3.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="GeneratedUI\" />
+  </ItemGroup>
+
 </Project>

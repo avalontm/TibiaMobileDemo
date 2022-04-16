@@ -17,9 +17,9 @@ namespace TibiaMobileDemo.UI
         {
             Current = new UIMainRoot();
 
-            Current.DataContext = new UIGameData();
             Current.Content = new UIGame();
-
+            Current.DataContext = new UIGameData();
+         
             //Cargamos el Contenido
             FontManager.Instance.LoadFonts(GameMain.Instance.Content);
             ImageManager.Instance.LoadImages(GameMain.Instance.Content);

@@ -2,12 +2,14 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using TibiaMobileDemo.UI;
 using TMFormat;
 using TMFormat.Formats;
+using TMFormat.Framework.Inputs;
 using TMFormat.Framework.Resolution;
 
 namespace TibiaMobileDemo
@@ -17,6 +19,8 @@ namespace TibiaMobileDemo
         GraphicsDeviceManager _graphics;
         SpriteBatch _spriteBatch;
         IResolution _resolution;
+        int ScreenX = 800;
+        int ScreenY = 600;
 
         public static GameMain Instance { private set; get;}
 
@@ -27,46 +31,55 @@ namespace TibiaMobileDemo
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
 
-            _graphics.PreferredBackBufferWidth = 800;
-            _graphics.PreferredBackBufferHeight= 600;
+            _graphics.PreferredBackBufferWidth = ScreenX;
+            _graphics.PreferredBackBufferHeight= ScreenY;
 
-            _graphics.PreparingDeviceSettings += graphics_PreparingDeviceSettings;
             _graphics.DeviceCreated += graphics_DeviceCreated;
+            _graphics.PreparingDeviceSettings += graphics_PreparingDeviceSettings;
             Window.ClientSizeChanged += new EventHandler<EventArgs>(OnResize);
 
         }
 
         void OnResize(object sender, EventArgs e)
         {
+            Viewport viewPort = GraphicsDevice.Viewport;
+
             if (ScreenManager.Current != null)
             {
-                Viewport viewPort = GraphicsDevice.Viewport;
                 ScreenManager.Current.Resize(viewPort.Width, viewPort.Height);
+                /*
+                _graphics.PreferredBackBufferWidth = viewPort.Width;
+                _graphics.PreferredBackBufferHeight = viewPort.Height;
+                _graphics.ApplyChanges();*/
             }
-            Debug.WriteLine($"[OnResize] {Window.ClientBounds.Width} x {Window.ClientBounds.Height}");
+            Debug.WriteLine($"[OnResize] {viewPort.Width} x {viewPort.Height}");
         }
 
 
         void graphics_PreparingDeviceSettings(object sender, PreparingDeviceSettingsEventArgs e)
-        {/*
+        {
+            /*
             _graphics.PreferMultiSampling = true;
             _graphics.GraphicsProfile = GraphicsProfile.HiDef;
             _graphics.SynchronizeWithVerticalRetrace = true; //Vsync
             _graphics.PreferredDepthStencilFormat = DepthFormat.Depth24Stencil8;
-            e.GraphicsDeviceInformation.PresentationParameters.MultiSampleCount = 8;*/
+            e.GraphicsDeviceInformation.PresentationParameters.MultiSampleCount = 8;
+            */
         }
 
         void graphics_DeviceCreated(object sender, EventArgs e)
         {
-            int w = 800;
-            int h = 600;
-            _resolution = new ResolutionComponent(this, _graphics, new Point(w, h), new Point(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight), false, false);
-            Engine engine = new MonoGameEngine(GraphicsDevice, w, h);
+
+            _resolution = new ResolutionComponent(this, _graphics, new Point(ScreenX, ScreenY), new Point(ScreenX, ScreenY), false, false, true);
+            Engine engine = new MonoGameEngine(GraphicsDevice, ScreenX, ScreenY);
 
         }
 
         protected override void Initialize()
         {
+            this.TargetElapsedTime = TimeSpan.FromSeconds(1f / 60);
+            this.IsFixedTimeStep = false;
+
             // TODO: Add your initialization logic here
             this.Window.Title = "TibiaMobile - Desktop DEMO";
             this.Window.AllowUserResizing = true;
@@ -86,10 +99,14 @@ namespace TibiaMobileDemo
             Debug.WriteLine($"[MAP] {maploaded}");
 
             ScreenManager.Init();
+
+            //Generamos el personaje
+            TMInstance.Map.onPlayerSpawn();
         }
 
         protected override void Update(GameTime gameTime)
         {
+            KeyboardManager.Update(gameTime);
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -101,6 +118,24 @@ namespace TibiaMobileDemo
 
             // TODO: Add your update logic here
             TMInstance.Map.Update(gameTime);
+
+            if (KeyboardManager.KeyState.IsKeyDown(Keys.Up))
+            {
+                KeyboardManager.Move(TMFormat.Framework.Enums.PlayerDir.North);
+            }
+            else if (KeyboardManager.KeyState.IsKeyDown(Keys.Left))
+            {
+                KeyboardManager.Move(TMFormat.Framework.Enums.PlayerDir.West);
+            }
+            else if (KeyboardManager.KeyState.IsKeyDown(Keys.Down))
+            {
+                KeyboardManager.Move(TMFormat.Framework.Enums.PlayerDir.South);
+            }
+            else if (KeyboardManager.KeyState.IsKeyDown(Keys.Right))
+            {
+                KeyboardManager.Move(TMFormat.Framework.Enums.PlayerDir.East);
+            }
+
             base.Update(gameTime);
         }
 

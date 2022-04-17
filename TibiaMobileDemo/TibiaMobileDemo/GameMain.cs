@@ -144,8 +144,6 @@ namespace TibiaMobileDemo
         {            
             // TODO: Add your update logic here
 
-            KeyboardManager.Update(gameTime);
-
             if (ScreenManager.Current != null)
             {
                 ScreenManager.Current?.UpdateInput(gameTime.ElapsedGameTime.TotalMilliseconds);
@@ -155,21 +153,26 @@ namespace TibiaMobileDemo
 
             TMInstance.Map.Update(gameTime);
 
-            if (KeyboardManager.KeyState.IsKeyDown(Keys.Up))
+            if (KeyboardManager.IsKeyDown(Keys.Up))
             {
                 KeyboardManager.Move(TMFormat.Framework.Enums.PlayerDir.North);
             }
-            else if (KeyboardManager.KeyState.IsKeyDown(Keys.Left))
+            else if (KeyboardManager.IsKeyDown(Keys.Left))
             {
                 KeyboardManager.Move(TMFormat.Framework.Enums.PlayerDir.West);
             }
-            else if (KeyboardManager.KeyState.IsKeyDown(Keys.Down))
+            else if (KeyboardManager.IsKeyDown(Keys.Down))
             {
                 KeyboardManager.Move(TMFormat.Framework.Enums.PlayerDir.South);
             }
-            else if (KeyboardManager.KeyState.IsKeyDown(Keys.Right))
+            else if (KeyboardManager.IsKeyDown(Keys.Right))
             {
                 KeyboardManager.Move(TMFormat.Framework.Enums.PlayerDir.East);
+            }
+
+            if (KeyboardManager.IsKeyPressed(Keys.Escape))
+            {
+                Debug.WriteLine($"[SPACE] {DateTime.Now.ToString("hh:mm:ss")}");
             }
 
             base.Update(gameTime);

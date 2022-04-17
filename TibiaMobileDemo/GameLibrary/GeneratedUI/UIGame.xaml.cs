@@ -51,6 +51,42 @@ namespace EmptyKeys.UserInterface.Generated {
         
         private Grid e_19;
         
+        private Grid e_20;
+        
+        private Border e_21;
+        
+        private Grid e_22;
+        
+        private Border e_23;
+        
+        private Grid e_24;
+        
+        private Grid e_25;
+        
+        private Border e_26;
+        
+        private Border e_27;
+        
+        private Border e_28;
+        
+        private Grid e_29;
+        
+        private Border e_30;
+        
+        private Border e_31;
+        
+        private Border e_32;
+        
+        private Grid e_33;
+        
+        private Border e_34;
+        
+        private Border e_35;
+        
+        private Border e_36;
+        
+        private Grid e_37;
+        
         public UIGame() {
             Style style = UserControlStyle.CreateUserControlStyle();
             style.TargetType = this.GetType();
@@ -153,8 +189,187 @@ namespace EmptyKeys.UserInterface.Generated {
             this.e_19 = new Grid();
             this.e_2.Children.Add(this.e_19);
             this.e_19.Name = "e_19";
+            RowDefinition row_e_19_0 = new RowDefinition();
+            row_e_19_0.Height = new GridLength(1F, GridUnitType.Auto);
+            this.e_19.RowDefinitions.Add(row_e_19_0);
+            RowDefinition row_e_19_1 = new RowDefinition();
+            row_e_19_1.Height = new GridLength(1F, GridUnitType.Auto);
+            this.e_19.RowDefinitions.Add(row_e_19_1);
+            RowDefinition row_e_19_2 = new RowDefinition();
+            row_e_19_2.Height = new GridLength(1F, GridUnitType.Star);
+            this.e_19.RowDefinitions.Add(row_e_19_2);
             Grid.SetColumn(this.e_19, 2);
             this.e_19.SetResourceReference(Grid.BackgroundProperty, "Background");
+            // e_20 element
+            this.e_20 = new Grid();
+            this.e_19.Children.Add(this.e_20);
+            this.e_20.Name = "e_20";
+            ColumnDefinition col_e_20_0 = new ColumnDefinition();
+            col_e_20_0.Width = new GridLength(1F, GridUnitType.Star);
+            this.e_20.ColumnDefinitions.Add(col_e_20_0);
+            ColumnDefinition col_e_20_1 = new ColumnDefinition();
+            col_e_20_1.Width = new GridLength(80F, GridUnitType.Pixel);
+            this.e_20.ColumnDefinitions.Add(col_e_20_1);
+            Grid.SetRow(this.e_20, 0);
+            // e_21 element
+            this.e_21 = new Border();
+            this.e_20.Children.Add(this.e_21);
+            this.e_21.Name = "e_21";
+            this.e_21.Height = 150F;
+            this.e_21.Margin = new Thickness(5F, 5F, 5F, 5F);
+            this.e_21.Background = new SolidColorBrush(new ColorW(0, 0, 0, 255));
+            // e_22 element
+            this.e_22 = new Grid();
+            this.e_20.Children.Add(this.e_22);
+            this.e_22.Name = "e_22";
+            Grid.SetColumn(this.e_22, 1);
+            // e_23 element
+            this.e_23 = new Border();
+            this.e_22.Children.Add(this.e_23);
+            this.e_23.Name = "e_23";
+            this.e_23.Margin = new Thickness(5F, 5F, 5F, 5F);
+            // e_24 element
+            this.e_24 = new Grid();
+            this.e_19.Children.Add(this.e_24);
+            this.e_24.Name = "e_24";
+            RowDefinition row_e_24_0 = new RowDefinition();
+            row_e_24_0.Height = new GridLength(80F, GridUnitType.Pixel);
+            this.e_24.RowDefinitions.Add(row_e_24_0);
+            RowDefinition row_e_24_1 = new RowDefinition();
+            row_e_24_1.Height = new GridLength(80F, GridUnitType.Pixel);
+            this.e_24.RowDefinitions.Add(row_e_24_1);
+            RowDefinition row_e_24_2 = new RowDefinition();
+            row_e_24_2.Height = new GridLength(80F, GridUnitType.Pixel);
+            this.e_24.RowDefinitions.Add(row_e_24_2);
+            Grid.SetRow(this.e_24, 1);
+            // e_25 element
+            this.e_25 = new Grid();
+            this.e_24.Children.Add(this.e_25);
+            this.e_25.Name = "e_25";
+            ColumnDefinition col_e_25_0 = new ColumnDefinition();
+            col_e_25_0.Width = new GridLength(1F, GridUnitType.Star);
+            this.e_25.ColumnDefinitions.Add(col_e_25_0);
+            ColumnDefinition col_e_25_1 = new ColumnDefinition();
+            col_e_25_1.Width = new GridLength(1F, GridUnitType.Star);
+            this.e_25.ColumnDefinitions.Add(col_e_25_1);
+            ColumnDefinition col_e_25_2 = new ColumnDefinition();
+            col_e_25_2.Width = new GridLength(1F, GridUnitType.Star);
+            this.e_25.ColumnDefinitions.Add(col_e_25_2);
+            Grid.SetRow(this.e_25, 0);
+            // e_26 element
+            this.e_26 = new Border();
+            this.e_25.Children.Add(this.e_26);
+            this.e_26.Name = "e_26";
+            this.e_26.Margin = new Thickness(2F, 2F, 2F, 2F);
+            this.e_26.Background = new SolidColorBrush(new ColorW(128, 128, 128, 255));
+            this.e_26.BorderBrush = new SolidColorBrush(new ColorW(0, 0, 0, 255));
+            this.e_26.BorderThickness = new Thickness(1F, 1F, 1F, 1F);
+            Grid.SetColumn(this.e_26, 0);
+            // e_27 element
+            this.e_27 = new Border();
+            this.e_25.Children.Add(this.e_27);
+            this.e_27.Name = "e_27";
+            this.e_27.Margin = new Thickness(2F, 2F, 2F, 2F);
+            this.e_27.Background = new SolidColorBrush(new ColorW(128, 128, 128, 255));
+            this.e_27.BorderBrush = new SolidColorBrush(new ColorW(0, 0, 0, 255));
+            this.e_27.BorderThickness = new Thickness(1F, 1F, 1F, 1F);
+            Grid.SetColumn(this.e_27, 1);
+            // e_28 element
+            this.e_28 = new Border();
+            this.e_25.Children.Add(this.e_28);
+            this.e_28.Name = "e_28";
+            this.e_28.Margin = new Thickness(2F, 2F, 2F, 2F);
+            this.e_28.Background = new SolidColorBrush(new ColorW(128, 128, 128, 255));
+            this.e_28.BorderBrush = new SolidColorBrush(new ColorW(0, 0, 0, 255));
+            this.e_28.BorderThickness = new Thickness(1F, 1F, 1F, 1F);
+            Grid.SetColumn(this.e_28, 2);
+            // e_29 element
+            this.e_29 = new Grid();
+            this.e_24.Children.Add(this.e_29);
+            this.e_29.Name = "e_29";
+            ColumnDefinition col_e_29_0 = new ColumnDefinition();
+            col_e_29_0.Width = new GridLength(1F, GridUnitType.Star);
+            this.e_29.ColumnDefinitions.Add(col_e_29_0);
+            ColumnDefinition col_e_29_1 = new ColumnDefinition();
+            col_e_29_1.Width = new GridLength(1F, GridUnitType.Star);
+            this.e_29.ColumnDefinitions.Add(col_e_29_1);
+            ColumnDefinition col_e_29_2 = new ColumnDefinition();
+            col_e_29_2.Width = new GridLength(1F, GridUnitType.Star);
+            this.e_29.ColumnDefinitions.Add(col_e_29_2);
+            Grid.SetRow(this.e_29, 1);
+            // e_30 element
+            this.e_30 = new Border();
+            this.e_29.Children.Add(this.e_30);
+            this.e_30.Name = "e_30";
+            this.e_30.Margin = new Thickness(2F, 2F, 2F, 2F);
+            this.e_30.Background = new SolidColorBrush(new ColorW(128, 128, 128, 255));
+            this.e_30.BorderBrush = new SolidColorBrush(new ColorW(0, 0, 0, 255));
+            this.e_30.BorderThickness = new Thickness(1F, 1F, 1F, 1F);
+            Grid.SetColumn(this.e_30, 0);
+            // e_31 element
+            this.e_31 = new Border();
+            this.e_29.Children.Add(this.e_31);
+            this.e_31.Name = "e_31";
+            this.e_31.Margin = new Thickness(2F, 2F, 2F, 2F);
+            this.e_31.Background = new SolidColorBrush(new ColorW(128, 128, 128, 255));
+            this.e_31.BorderBrush = new SolidColorBrush(new ColorW(0, 0, 0, 255));
+            this.e_31.BorderThickness = new Thickness(1F, 1F, 1F, 1F);
+            Grid.SetColumn(this.e_31, 1);
+            // e_32 element
+            this.e_32 = new Border();
+            this.e_29.Children.Add(this.e_32);
+            this.e_32.Name = "e_32";
+            this.e_32.Margin = new Thickness(2F, 2F, 2F, 2F);
+            this.e_32.Background = new SolidColorBrush(new ColorW(128, 128, 128, 255));
+            this.e_32.BorderBrush = new SolidColorBrush(new ColorW(0, 0, 0, 255));
+            this.e_32.BorderThickness = new Thickness(1F, 1F, 1F, 1F);
+            Grid.SetColumn(this.e_32, 2);
+            // e_33 element
+            this.e_33 = new Grid();
+            this.e_24.Children.Add(this.e_33);
+            this.e_33.Name = "e_33";
+            ColumnDefinition col_e_33_0 = new ColumnDefinition();
+            col_e_33_0.Width = new GridLength(1F, GridUnitType.Star);
+            this.e_33.ColumnDefinitions.Add(col_e_33_0);
+            ColumnDefinition col_e_33_1 = new ColumnDefinition();
+            col_e_33_1.Width = new GridLength(1F, GridUnitType.Star);
+            this.e_33.ColumnDefinitions.Add(col_e_33_1);
+            ColumnDefinition col_e_33_2 = new ColumnDefinition();
+            col_e_33_2.Width = new GridLength(1F, GridUnitType.Star);
+            this.e_33.ColumnDefinitions.Add(col_e_33_2);
+            Grid.SetRow(this.e_33, 2);
+            // e_34 element
+            this.e_34 = new Border();
+            this.e_33.Children.Add(this.e_34);
+            this.e_34.Name = "e_34";
+            this.e_34.Margin = new Thickness(2F, 2F, 2F, 2F);
+            this.e_34.Background = new SolidColorBrush(new ColorW(128, 128, 128, 255));
+            this.e_34.BorderBrush = new SolidColorBrush(new ColorW(0, 0, 0, 255));
+            this.e_34.BorderThickness = new Thickness(1F, 1F, 1F, 1F);
+            Grid.SetColumn(this.e_34, 0);
+            // e_35 element
+            this.e_35 = new Border();
+            this.e_33.Children.Add(this.e_35);
+            this.e_35.Name = "e_35";
+            this.e_35.Margin = new Thickness(2F, 2F, 2F, 2F);
+            this.e_35.Background = new SolidColorBrush(new ColorW(128, 128, 128, 255));
+            this.e_35.BorderBrush = new SolidColorBrush(new ColorW(0, 0, 0, 255));
+            this.e_35.BorderThickness = new Thickness(1F, 1F, 1F, 1F);
+            Grid.SetColumn(this.e_35, 1);
+            // e_36 element
+            this.e_36 = new Border();
+            this.e_33.Children.Add(this.e_36);
+            this.e_36.Name = "e_36";
+            this.e_36.Margin = new Thickness(2F, 2F, 2F, 2F);
+            this.e_36.Background = new SolidColorBrush(new ColorW(128, 128, 128, 255));
+            this.e_36.BorderBrush = new SolidColorBrush(new ColorW(0, 0, 0, 255));
+            this.e_36.BorderThickness = new Thickness(1F, 1F, 1F, 1F);
+            Grid.SetColumn(this.e_36, 2);
+            // e_37 element
+            this.e_37 = new Grid();
+            this.e_19.Children.Add(this.e_37);
+            this.e_37.Name = "e_37";
+            Grid.SetRow(this.e_37, 2);
             FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Bold, "Segoe_UI_9_Bold");
         }
         

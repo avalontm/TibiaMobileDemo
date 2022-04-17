@@ -7,6 +7,7 @@ using  EmptyKeys.UserInterface.Generated;
 using EmptyKeys.UserInterface.Media;
 using EmptyKeys.UserInterface.Media.Effects;
 using TibiaMobileDemo.UI.Screens;
+using TMFormat.Framework.Loaders;
 
 namespace TibiaMobileDemo.UI
 {
@@ -19,13 +20,15 @@ namespace TibiaMobileDemo.UI
 
             Current.Content = new UIGame();
             Current.DataContext = new UIGameData();
-         
+
             //Cargamos el Contenido
+            FontManager.DefaultFont = Engine.Instance.Renderer.CreateFont(Fonts.FontDefault);
             FontManager.Instance.LoadFonts(GameMain.Instance.Content);
             ImageManager.Instance.LoadImages(GameMain.Instance.Content);
             SoundManager.Instance.LoadSounds(GameMain.Instance.Content);
             EffectManager.Instance.LoadEffects(GameMain.Instance.Content);
             SoundManager.Instance.LoadSounds(GameMain.Instance.Content);
+
         }
     }
 }

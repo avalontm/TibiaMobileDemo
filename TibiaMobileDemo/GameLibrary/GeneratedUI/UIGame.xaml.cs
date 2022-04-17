@@ -81,13 +81,13 @@ namespace EmptyKeys.UserInterface.Generated {
             this.e_0.Children.Add(this.e_2);
             this.e_2.Name = "e_2";
             ColumnDefinition col_e_2_0 = new ColumnDefinition();
-            col_e_2_0.Width = new GridLength(20F, GridUnitType.Pixel);
+            col_e_2_0.Width = new GridLength(10F, GridUnitType.Pixel);
             this.e_2.ColumnDefinitions.Add(col_e_2_0);
             ColumnDefinition col_e_2_1 = new ColumnDefinition();
             col_e_2_1.Width = new GridLength(1F, GridUnitType.Star);
             this.e_2.ColumnDefinitions.Add(col_e_2_1);
             ColumnDefinition col_e_2_2 = new ColumnDefinition();
-            col_e_2_2.Width = new GridLength(230F, GridUnitType.Pixel);
+            col_e_2_2.Width = new GridLength(250F, GridUnitType.Pixel);
             this.e_2.ColumnDefinitions.Add(col_e_2_2);
             Grid.SetRow(this.e_2, 1);
             // e_3 element
@@ -104,7 +104,7 @@ namespace EmptyKeys.UserInterface.Generated {
             row_e_4_0.Height = new GridLength(1F, GridUnitType.Star);
             this.e_4.RowDefinitions.Add(row_e_4_0);
             RowDefinition row_e_4_1 = new RowDefinition();
-            row_e_4_1.Height = new GridLength(180F, GridUnitType.Pixel);
+            row_e_4_1.Height = new GridLength(200F, GridUnitType.Pixel);
             this.e_4.RowDefinitions.Add(row_e_4_1);
             Grid.SetColumn(this.e_4, 1);
             // e_5 element

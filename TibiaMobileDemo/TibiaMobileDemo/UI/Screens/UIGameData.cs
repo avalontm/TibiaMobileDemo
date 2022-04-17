@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Text;
 using TibiaMobileDemo.Models;
 
@@ -41,6 +42,7 @@ namespace TibiaMobileDemo.UI.Screens
             generalChannel = new ObservableCollection<ChatChannel>();
 
             generalChannel.Add(new ChatChannel() { date = DateTime.Now, name = "player", message = "Hola mundo!", color = Color.Yellow });
+
         }
     }
 }

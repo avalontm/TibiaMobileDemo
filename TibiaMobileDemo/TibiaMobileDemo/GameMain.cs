@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using TibiaMobileDemo.UI;
 using TMFormat;
 using TMFormat.Formats;
@@ -14,15 +15,22 @@ using TMFormat.Framework.Resolution;
 
 namespace TibiaMobileDemo
 {
+
     public class GameMain : Game
     {
+        #region variables
+        [DllImport("SDL2.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void SDL_MaximizeWindow(IntPtr window);
+
         GraphicsDeviceManager _graphics;
         SpriteBatch _spriteBatch;
         IResolution _resolution;
         int ScreenX = 800;
         int ScreenY = 600;
+        public static GameMain Instance { private set; get; }
 
-        public static GameMain Instance { private set; get;}
+        #endregion
+
 
         public GameMain()
         {
@@ -37,25 +45,42 @@ namespace TibiaMobileDemo
             _graphics.DeviceCreated += graphics_DeviceCreated;
             _graphics.PreparingDeviceSettings += graphics_PreparingDeviceSettings;
             Window.ClientSizeChanged += new EventHandler<EventArgs>(OnResize);
-
+          
         }
 
+        /// <summary>
+        /// OnResize
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void OnResize(object sender, EventArgs e)
         {
             Viewport viewPort = GraphicsDevice.Viewport;
 
             if (ScreenManager.Current != null)
             {
-                ScreenManager.Current.Resize(viewPort.Width, viewPort.Height);
-                /*
-                _graphics.PreferredBackBufferWidth = viewPort.Width;
-                _graphics.PreferredBackBufferHeight = viewPort.Height;
-                _graphics.ApplyChanges();*/
+                if (viewPort.Width >= ScreenX && viewPort.Height >= ScreenY)
+                {
+                    _graphics.PreferredBackBufferWidth = viewPort.Width;
+                    _graphics.PreferredBackBufferHeight = viewPort.Height;
+                    _graphics.ApplyChanges();
+                    ScreenManager.Current.Resize(viewPort.Width, viewPort.Height);
+                    _resolution.Resize(viewPort.Width, viewPort.Height);
+                }
+                else
+                {
+                    _graphics.PreferredBackBufferWidth = ScreenX;
+                    _graphics.PreferredBackBufferHeight = ScreenY;
+                    _graphics.ApplyChanges();
+                }
             }
-            Debug.WriteLine($"[OnResize] {viewPort.Width} x {viewPort.Height}");
         }
 
-
+        /// <summary>
+        /// PreparingDeviceSettings
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void graphics_PreparingDeviceSettings(object sender, PreparingDeviceSettingsEventArgs e)
         {
             /*
@@ -67,12 +92,15 @@ namespace TibiaMobileDemo
             */
         }
 
+        /// <summary>
+        /// DeviceCreated
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void graphics_DeviceCreated(object sender, EventArgs e)
         {
-
             _resolution = new ResolutionComponent(this, _graphics, new Point(ScreenX, ScreenY), new Point(ScreenX, ScreenY), false, false, true);
             Engine engine = new MonoGameEngine(GraphicsDevice, ScreenX, ScreenY);
-
         }
 
         protected override void Initialize()
@@ -83,6 +111,7 @@ namespace TibiaMobileDemo
             // TODO: Add your initialization logic here
             this.Window.Title = "TibiaMobile - Desktop DEMO";
             this.Window.AllowUserResizing = true;
+ 
             base.Initialize();
 
         }
@@ -100,15 +129,22 @@ namespace TibiaMobileDemo
 
             ScreenManager.Init();
 
+            //Actualizamos el inicio de la ventana
+            _resolution.Resize(ScreenX, ScreenY);
+
+            //Maximizamos la ventana
+            Window.Position = new Point(0, 0);
+            SDL_MaximizeWindow(Window.Handle);
+
             //Generamos el personaje
             TMInstance.Map.onPlayerSpawn();
         }
 
         protected override void Update(GameTime gameTime)
-        {
+        {            
+            // TODO: Add your update logic here
+
             KeyboardManager.Update(gameTime);
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
 
             if (ScreenManager.Current != null)
             {
@@ -116,7 +152,7 @@ namespace TibiaMobileDemo
                 ScreenManager.Current?.UpdateLayout(gameTime.ElapsedGameTime.TotalMilliseconds);
             }
 
-            // TODO: Add your update logic here
+
             TMInstance.Map.Update(gameTime);
 
             if (KeyboardManager.KeyState.IsKeyDown(Keys.Up))
@@ -140,10 +176,11 @@ namespace TibiaMobileDemo
         }
 
         protected override void Draw(GameTime gameTime)
-        {
+        { 
+            // TODO: Add your drawing code here
+
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
             TMInstance.Map.Draw(gameTime);
 
             if (ScreenManager.Current != null)

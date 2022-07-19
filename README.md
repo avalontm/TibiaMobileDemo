@@ -36,4 +36,4 @@ Unete a nuestro canal de [Discord](https://discord.gg/kZXactgWdw), para mas info
 
 [TibiaMobileWeb](https://github.com/avalontm/TibiaMobileWeb)
 
-![Main](images/image.png)
+![Main](images/image2.png)

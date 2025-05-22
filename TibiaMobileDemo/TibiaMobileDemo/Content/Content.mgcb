@@ -10,7 +10,7 @@
 
 #-------------------------------- References --------------------------------#
 
-/reference:..\..\..\..\TibiaMobile\TibiaDroid\Content\TibiaCorePipeline.dll
+/reference:TibiaCorePipeline.dll
 
 #---------------------------------- Content ---------------------------------#
 

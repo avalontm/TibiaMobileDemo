@@ -4,13 +4,12 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using TibiaMobileDemo.UI;
 using TMFormat;
-using TMFormat.Formats;
 using TMFormat.Framework.Inputs;
+using TMFormat.Framework.Maps;
 using TMFormat.Framework.Resolution;
 
 namespace TibiaMobileDemo
@@ -21,6 +20,10 @@ namespace TibiaMobileDemo
         #region variables
         [DllImport("SDL2.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern void SDL_MaximizeWindow(IntPtr window);
+
+        [DllImport("SDL2.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int SDL_ShowSimpleMessageBox(uint flags, string title, string message, IntPtr window);
+
 
         GraphicsDeviceManager _graphics;
         SpriteBatch _spriteBatch;
@@ -40,12 +43,12 @@ namespace TibiaMobileDemo
             IsMouseVisible = true;
 
             _graphics.PreferredBackBufferWidth = ScreenX;
-            _graphics.PreferredBackBufferHeight= ScreenY;
+            _graphics.PreferredBackBufferHeight = ScreenY;
 
             _graphics.DeviceCreated += graphics_DeviceCreated;
             _graphics.PreparingDeviceSettings += graphics_PreparingDeviceSettings;
             Window.ClientSizeChanged += new EventHandler<EventArgs>(OnResize);
-          
+
         }
 
         /// <summary>
@@ -83,13 +86,13 @@ namespace TibiaMobileDemo
         /// <param name="e"></param>
         void graphics_PreparingDeviceSettings(object sender, PreparingDeviceSettingsEventArgs e)
         {
-            /*
-            _graphics.PreferMultiSampling = true;
-            _graphics.GraphicsProfile = GraphicsProfile.HiDef;
-            _graphics.SynchronizeWithVerticalRetrace = true; //Vsync
-            _graphics.PreferredDepthStencilFormat = DepthFormat.Depth24Stencil8;
-            e.GraphicsDeviceInformation.PresentationParameters.MultiSampleCount = 8;
-            */
+            
+            //_graphics.PreferMultiSampling = true;
+            //_graphics.GraphicsProfile = GraphicsProfile.HiDef;
+            //_graphics.SynchronizeWithVerticalRetrace = true; //Vsync
+           // _graphics.PreferredDepthStencilFormat = DepthFormat.Depth24Stencil8;
+            //e.GraphicsDeviceInformation.PresentationParameters.MultiSampleCount = 8;
+            
         }
 
         /// <summary>
@@ -105,27 +108,40 @@ namespace TibiaMobileDemo
 
         protected override void Initialize()
         {
-            this.TargetElapsedTime = TimeSpan.FromSeconds(1f / 60);
-            this.IsFixedTimeStep = false;
+            this.IsFixedTimeStep = true;
+            this.TargetElapsedTime = TimeSpan.FromSeconds(1.0 / 60.0);
 
             // TODO: Add your initialization logic here
             this.Window.Title = "TibiaMobile - Desktop DEMO";
             this.Window.AllowUserResizing = true;
- 
+
             base.Initialize();
 
         }
 
-        protected override void LoadContent()
+        protected override async void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
-            bool loaded = TMInstance.InitGame(GraphicsDevice, Content, true);
-            Debug.WriteLine($"[GAME] {loaded}");
+            bool loaded = await TMInstance.InitGame(GraphicsDevice, Content, true);
+            Debug.WriteLine($"[GAME] {loaded} - {TMInstance.Map.MapBase.Items.Count} items.");
+
+            if(!loaded)
+            {
+                SDL_ShowSimpleMessageBox(0x10, "Error", "Error al cargar los items del juego.", IntPtr.Zero);
+                Environment.Exit(0); // <- Cierra el juego
+                return;
+            }
 
             bool maploaded = TMInstance.InitWorld();
             Debug.WriteLine($"[MAP] {maploaded}");
+
+            if (!maploaded)
+            {
+                SDL_ShowSimpleMessageBox(0x10, "Error", "Error al cargar el mapa del juego.", IntPtr.Zero);
+                Environment.Exit(0); // <- Cierra el juego
+                return;
+            }
 
             ScreenManager.Init();
 
@@ -141,7 +157,7 @@ namespace TibiaMobileDemo
         }
 
         protected override void Update(GameTime gameTime)
-        {            
+        {
             // TODO: Add your update logic here
 
             if (ScreenManager.Current != null)
@@ -149,7 +165,6 @@ namespace TibiaMobileDemo
                 ScreenManager.Current?.UpdateInput(gameTime.ElapsedGameTime.TotalMilliseconds);
                 ScreenManager.Current?.UpdateLayout(gameTime.ElapsedGameTime.TotalMilliseconds);
             }
-
 
             TMInstance.Map.Update(gameTime);
 
@@ -179,7 +194,7 @@ namespace TibiaMobileDemo
         }
 
         protected override void Draw(GameTime gameTime)
-        { 
+        {
             // TODO: Add your drawing code here
 
             GraphicsDevice.Clear(Color.CornflowerBlue);
